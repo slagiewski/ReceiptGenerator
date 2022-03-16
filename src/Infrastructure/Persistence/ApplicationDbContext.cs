@@ -59,10 +59,10 @@ namespace ReceiptGenerator.Infrastructure.Persistence
             }
 
             var events = ChangeTracker.Entries<IHasDomainEvent>()
-                    .Select(x => x.Entity.DomainEvents)
-                    .SelectMany(x => x)
-                    .Where(domainEvent => !domainEvent.IsPublished)
-                    .ToArray();
+                .Select(x => x.Entity.DomainEvents)
+                .SelectMany(x => x)
+                .Where(domainEvent => !domainEvent.IsPublished)
+                .ToArray();
 
             var result = await base.SaveChangesAsync(cancellationToken);
 
